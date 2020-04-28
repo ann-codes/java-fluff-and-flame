@@ -9,8 +9,6 @@ const IndexTypes = props => {
   const fetchCreatureTypes = () => fetchData(apiEndpoint, setCreatureTypes);
   useEffect(fetchCreatureTypes, []);
 
-  console.log(creatureTypes);
-
   let mapTypes = "LOADING...";
 
   if (creatureTypes !== undefined) {
