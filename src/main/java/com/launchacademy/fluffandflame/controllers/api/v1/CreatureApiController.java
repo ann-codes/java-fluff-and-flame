@@ -5,12 +5,10 @@ import com.launchacademy.fluffandflame.models.CreatureType;
 import com.launchacademy.fluffandflame.repositories.CreatureRepo;
 import com.launchacademy.fluffandflame.repositories.CreatureTypeRepo;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,16 +53,8 @@ public class CreatureApiController {
   }
 
   @GetMapping("creature/types")
-  public Iterable<CreatureType> getAllCreatureTypes(
-//      @RequestParam(required = false) Integer page
-  ) {
-//    if (page == null) {
-//      page = 0;
-//    }
-//    Pageable pageable = PageRequest.of(page, 20);
-//    return creatureTypeRepo.findAll(pageable);
+  public Iterable<CreatureType> getAllCreatureTypes() {
     return creatureTypeRepo.findAll();
-
   }
 
 //  @GetMapping("creature/types/{id}")
@@ -85,30 +74,31 @@ public class CreatureApiController {
     return creatureTypeRepo.findByType(typeName);
   }
 
-  @GetMapping("creatures/adoptable")
-  public Iterable<Creature> getAllAdoptableCreatures(
-//      @RequestParam(required = false) Integer page
-  ) {
-//    if (page == null) {
-//      page = 0;
-//    }
-//    Pageable pageable = PageRequest.of(page, 20);
-//    return creatureRepo.findAll(pageable);
+  @GetMapping("adoptable")
+  public Iterable<Creature> getAllAdoptableCreatures() {
     return creatureRepo.findAll();
   }
 
-  @GetMapping("creatures/adoptable/{typeName}")
+  @GetMapping("adoptable/{typeName}")
   public Iterable<Creature> getAllCreaturesByType(@PathVariable String typeName) {
-//    Pageable pageable = PageRequest.of(page, 20);
-
-    try {
-      System.out.println(creatureRepo.findAllByCreatureType(typeName));
-    } catch (NotFoundException ex) {
-      System.out.println("NOT FOUND ==============>" + ex);
-    }
-//return null;
+//    try {
+//      System.out.println(creatureRepo.findAllByCreatureType(typeName));
+//    } catch (NotFoundException ex) {
+//      System.out.println("NOT FOUND ==============>" + ex);
+//    }
     return creatureRepo.findAllByCreatureType(typeName);
   }
+
+  @GetMapping("adoptable/{typeName}/{id}")
+  public Optional<Creature> getOneCreature(@PathVariable String typeName,
+      @PathVariable Integer id) {
+    if (creatureRepo.findById(id).get().getCreatureType().getType().equals(typeName)) {
+      return creatureRepo.findById(id);
+    } else {
+      return Optional.empty();
+    }
+  }
+
 
   @PostMapping("creature/types")
   public ResponseEntity create(@Valid @RequestBody CreatureType creatureType,
