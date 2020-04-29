@@ -1,1 +1,0 @@
-Individual Project converting the original [Fluff and Flame]() to a Java Spring backend.  
