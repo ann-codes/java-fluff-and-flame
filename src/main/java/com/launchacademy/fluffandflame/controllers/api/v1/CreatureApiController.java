@@ -37,10 +37,7 @@ public class CreatureApiController {
   }
 
   @NoArgsConstructor
-  private class NotFoundException extends RuntimeException {
-
-  }
-
+  private class NotFoundException extends RuntimeException { }
   @ControllerAdvice
   private class NotFoundAdvice {
 
@@ -52,7 +49,7 @@ public class CreatureApiController {
     }
   }
 
-  @GetMapping("creature/types")
+  @GetMapping("creature/all")
   public Iterable<CreatureType> getAllCreatureTypes() {
     return creatureTypeRepo.findAll();
   }

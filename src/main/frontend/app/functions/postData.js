@@ -14,7 +14,7 @@ const postData = (apiPath, payload) => {
         }
       })
       .then(response => response.json())
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+      .catch(error => console.error(`Error in Post fetch: ${error.message}`));
   };
   
   export default postData;

@@ -3,7 +3,7 @@ import { Route, Switch, BrowserRouter, Link } from "react-router-dom";
 import IndexTypes from "./IndexTypes";
 import IndexCreature from "./IndexCreature";
 import CreatureTypeShowpage from "../components/CreatureTypeShowpage";
-// import NewCreature from "../containers/NewCreature";
+import NewCreature from "../containers/NewCreature";
 // import AdminMain from "./AdminMain";
 // import IndexAdopted from "./IndexAdopted";
 import Footer from "../components/Footer";
@@ -22,6 +22,9 @@ const App = props => {
         <div className="row medium-10 columns">
           <Switch>
             <Route exact path="/" component={IndexTypes} />
+
+            <Route exact path="/surrender" component={NewCreature} />
+
             <Route exact path="/creatures" component={IndexTypes} />
             <Route exact path="/creatures/:type" component={IndexCreature} />
             <Route
