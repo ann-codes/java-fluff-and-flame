@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreatureSeeder implements CommandLineRunner {
+public class CreatureSeeder {
 
   private CreatureRepo creatureRepo;
   private CreatureTypeRepo creatureTypeRepo;
@@ -18,8 +18,7 @@ public class CreatureSeeder implements CommandLineRunner {
     this.creatureTypeRepo = creatureTypeRepo;
   }
 
-  @Override
-  public void run(String... args) throws Exception {
+  public void seed() {
 
     Creature newCreature = new Creature();
     newCreature.setName("Test Thing");
@@ -31,7 +30,7 @@ public class CreatureSeeder implements CommandLineRunner {
     newCreature.setCreatureType(creatureTypeRepo.findByType("Testasaurus"));
 
     List<Creature> findCreature = creatureRepo.findAll();
-    if(findCreature.size() == 0) {
+    if (findCreature.size() == 0) {
       System.out.println("NOT FOUND ADDING " + newCreature.getName());
       creatureRepo.save(newCreature);
     }

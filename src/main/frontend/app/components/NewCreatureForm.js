@@ -36,10 +36,10 @@ const NewCreatureForm = props => {
   const handleChange = event => {
     setFormState({
       ...formState,
-      petType: formState.petType,
+      // petType: formState.petType,
       [event.currentTarget.id]: event.currentTarget.value
     });
-    console.log(event.currentTarget.id, event.currentTarget.value);
+    console.log(event.currentTarget.id, event.currentTarget.value); //// ====== 
   };
 
   const handleSubmit = event => {

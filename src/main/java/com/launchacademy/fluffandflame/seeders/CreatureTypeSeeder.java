@@ -4,11 +4,10 @@ import com.launchacademy.fluffandflame.models.CreatureType;
 import com.launchacademy.fluffandflame.repositories.CreatureTypeRepo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreatureTypeSeeder implements CommandLineRunner {
+public class CreatureTypeSeeder {
 
   private CreatureTypeRepo repo;
 
@@ -17,8 +16,7 @@ public class CreatureTypeSeeder implements CommandLineRunner {
     this.repo = repo;
   }
 
-  @Override
-  public void run(String... args) throws Exception {
+  public void seed() {
     CreatureType newCreature = new CreatureType();
     newCreature.setType("Testasaurus");
     newCreature.setDescription("This is just a test.");

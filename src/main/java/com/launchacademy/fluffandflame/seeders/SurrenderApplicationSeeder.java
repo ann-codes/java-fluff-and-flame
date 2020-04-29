@@ -4,23 +4,23 @@ import com.launchacademy.fluffandflame.models.SurrenderApplication;
 import com.launchacademy.fluffandflame.repositories.CreatureTypeRepo;
 import com.launchacademy.fluffandflame.repositories.SurrenderApplicationRepo;
 import java.util.List;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SurrenderApplicationSeeder implements CommandLineRunner {
+public class SurrenderApplicationSeeder {
 
   private SurrenderApplicationRepo surrenderApplicationRepo;
   private CreatureTypeRepo creatureTypeRepo;
 
+  @Autowired
   public SurrenderApplicationSeeder(SurrenderApplicationRepo surrenderApplicationRepo,
       CreatureTypeRepo creatureTypeRepo) {
     this.surrenderApplicationRepo = surrenderApplicationRepo;
     this.creatureTypeRepo = creatureTypeRepo;
   }
 
-  @Override
-  public void run(String... args) throws Exception {
+  public void seed() {
 
     SurrenderApplication newSurApp = new SurrenderApplication();
     newSurApp.setName("Some Guy Giving up His Pet");
