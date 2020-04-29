@@ -10,12 +10,11 @@ import org.springframework.data.repository.query.Param;
 public interface CreatureRepo extends PagingAndSortingRepository<Creature, Integer> {
 
   public List<Creature> findAll();
-
-//  @Query("SELECT a FROM AdoptablePet a JOIN PetType p ON a.typeId = p.id WHERE p.type = :type")
-//  public List<AdoptablePet> findAllBytype(@Param("type") String type);
+  public Creature findByName(String name);
 
   @Query("SELECT c FROM Creature c JOIN CreatureType t on c.creatureType = t.id WHERE t.type = :type")
   public List<Creature> findAllByCreatureType(@Param("type") String type);
+
 
 
 

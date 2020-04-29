@@ -39,7 +39,7 @@ const NewCreatureForm = props => {
       // petType: formState.petType,
       [event.currentTarget.id]: event.currentTarget.value
     });
-    console.log(event.currentTarget.id, event.currentTarget.value); //// ====== 
+    console.log(event.currentTarget.id, event.currentTarget.value); //// ============ 
   };
 
   const handleSubmit = event => {
@@ -104,7 +104,7 @@ const NewCreatureForm = props => {
       <input
         name="petAge"
         id="petAge"
-        type="text"
+        type="number"
         value={formState.petAge}
         onChange={handleChange}
         required

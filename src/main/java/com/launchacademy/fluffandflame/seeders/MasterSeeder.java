@@ -10,6 +10,7 @@ public class MasterSeeder implements CommandLineRunner {
   @Autowired CreatureTypeSeeder creatureTypeSeeder;
   @Autowired CreatureSeeder creatureSeeder;
   @Autowired SurrenderApplicationSeeder surrenderApplicationSeeder;
+  @Autowired AdoptionApplicationSeeder adoptionApplicationSeeder;
 
   @Override
   public void run(String... args) throws Exception {
@@ -17,6 +18,7 @@ public class MasterSeeder implements CommandLineRunner {
     creatureTypeSeeder.seed();
     creatureSeeder.seed();
     surrenderApplicationSeeder.seed();
+    adoptionApplicationSeeder.seed();
 
   }
 }
