@@ -27,7 +27,6 @@ public class CreatureTypeSeeder {
       System.out.println("NOT FOUND ADDING " + newCreature.getType());
       repo.save(newCreature);
     }
-
   }
 }
 

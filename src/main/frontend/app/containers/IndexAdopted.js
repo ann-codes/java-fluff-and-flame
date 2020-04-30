@@ -4,19 +4,12 @@ import CardAdopted from "../components/CardAdopted";
 
 const IndexAdopted = props => {
   const [creatures, setCreatures] = useState([]);
-//   const percent = "%25";
-//   const apiEndpoint = `/api/v1/adoptable/${percent}`;
-
   const apiEndpoint = `/api/v1/creatures/adopted`;
 
   const fetchCreatures = () => fetchData(apiEndpoint, setCreatures);
   useEffect(fetchCreatures, []);
 
-  const adopted = creatures.filter(
-    creature => creature.adoptionStatus === "adopted"
-  );
-
-  const mapCreatures = adopted.map(creature => (
+  const mapCreatures = creatures.map(creature => (
     <CardAdopted key={creature.id} creatures={creature} />
   ));
   return (

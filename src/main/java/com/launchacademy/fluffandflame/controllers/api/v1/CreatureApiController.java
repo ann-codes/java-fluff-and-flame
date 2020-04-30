@@ -72,6 +72,12 @@ public class CreatureApiController {
     return creatureTypeRepo.findByType(typeName);
   }
 
+  // not used?
+  @GetMapping("creatures/all")
+  public Iterable<Creature> getCreatures() {
+    return creatureRepo.findAll();
+  }
+
   @GetMapping("creatures/adopted")
   public Iterable<Creature> getAllAdoptedCreatures() {
     return creatureRepo.findAllByAdoptionStatus("adopted");
@@ -79,11 +85,11 @@ public class CreatureApiController {
 
   @GetMapping("adoptable")
   public Iterable<Creature> getAllAdoptableCreatures() {
-    return creatureRepo.findAll();
+    return creatureRepo.findAllByAdoptionStatus("available");
   }
 
   @GetMapping("adoptable/{typeName}")
-  public Iterable<Creature> getAllCreaturesByType(@PathVariable String typeName) {
+  public Iterable<Creature> getAdoptableCreaturesByType(@PathVariable String typeName) {
 //    try {
 //      System.out.println(creatureRepo.findAllByCreatureType(typeName));
 //    } catch (NotFoundException ex) {
@@ -101,11 +107,6 @@ public class CreatureApiController {
       return Optional.empty();
     }
   }
-
-
-
-
-
 
   // tests =============== delete later?
   @PostMapping("creature/types")
