@@ -5,7 +5,7 @@ import CardType from "../components/CardType";
 const IndexTypes = props => {
   const [creatureTypes, setCreatureTypes] = useState([]);
 
-  const apiEndpoint = "/api/v1/creature/all";
+  const apiEndpoint = "/api/v1/all/types";
   const fetchCreatureTypes = () => fetchData(apiEndpoint, setCreatureTypes);
   useEffect(fetchCreatureTypes, []);
 

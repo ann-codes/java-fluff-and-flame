@@ -49,7 +49,7 @@ public class CreatureApiController {
     }
   }
 
-  @GetMapping("creature/all")
+  @GetMapping("all/types")
   public Iterable<CreatureType> getAllCreatureTypes() {
     return creatureTypeRepo.findAll();
   }
@@ -59,7 +59,8 @@ public class CreatureApiController {
 //    return creatureTypeRepo.findById(id).orElseThrow(NotFoundException::new);
 //  }
 
-  @GetMapping("creature/types/{typeName}")
+  // =========================== NOT used?
+  @GetMapping("types/{typeName}")
   public CreatureType getOneCreatureByTypeName(@PathVariable String typeName) {
     // doesnt seem to have a .orElseThrow method to chain
     try {
@@ -69,6 +70,11 @@ public class CreatureApiController {
       // doesn't work if not found? just blank
     }
     return creatureTypeRepo.findByType(typeName);
+  }
+
+  @GetMapping("creatures/adopted")
+  public Iterable<Creature> getAllAdoptedCreatures() {
+    return creatureRepo.findAllByAdoptionStatus("adopted");
   }
 
   @GetMapping("adoptable")
@@ -97,6 +103,11 @@ public class CreatureApiController {
   }
 
 
+
+
+
+
+  // tests =============== delete later?
   @PostMapping("creature/types")
   public ResponseEntity create(@Valid @RequestBody CreatureType creatureType,
       BindingResult bindingResult) {

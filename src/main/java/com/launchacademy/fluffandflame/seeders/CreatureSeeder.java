@@ -26,7 +26,7 @@ public class CreatureSeeder {
     newCreature.setAge(2);
     newCreature.setVaccinationStatus(false);
     newCreature.setAdoptionStory("A testy mc testing tester doodle");
-    newCreature.setAdoptionStatus("available");
+    newCreature.setAdoptionStatus("adopted");
     newCreature.setCreatureType(creatureTypeRepo.findByType("Testasaurus"));
 
     List<Creature> findCreature = creatureRepo.findAll();

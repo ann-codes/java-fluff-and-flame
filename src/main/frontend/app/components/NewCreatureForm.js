@@ -4,7 +4,7 @@ import fetchData from "../functions/fetchData";
 const NewCreatureForm = props => {
   // loading dropdown information and finding creatureType object
   const [creatureTypes, setCreatureTypes] = useState([]);
-  const apiEndpoint = "/api/v1/creature/all";
+  const apiEndpoint = "/api/v1/all/types";
   const fetchCreatureTypes = () => fetchData(apiEndpoint, setCreatureTypes);
   useEffect(fetchCreatureTypes, []);
   let listTypes = <option>LOADING...</option>;

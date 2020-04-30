@@ -11,6 +11,7 @@ public interface CreatureRepo extends PagingAndSortingRepository<Creature, Integ
 
   public List<Creature> findAll();
   public Creature findByName(String name);
+  public List<Creature> findAllByAdoptionStatus(String status);
 
   @Query("SELECT c FROM Creature c JOIN CreatureType t on c.creatureType = t.id WHERE t.type = :type")
   public List<Creature> findAllByCreatureType(@Param("type") String type);
