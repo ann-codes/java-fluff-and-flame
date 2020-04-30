@@ -2,7 +2,7 @@ package com.launchacademy.fluffandflame.repositories;
 
 import com.launchacademy.fluffandflame.models.Creature;
 import java.util.List;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,5 +17,7 @@ public interface CreatureRepo extends PagingAndSortingRepository<Creature, Integ
   @Query("SELECT c FROM Creature c JOIN CreatureType t on c.creatureType = t.id WHERE t.type = :type AND c.adoptionStatus = 'available'")
   public List<Creature> findAllByCreatureType(@Param("type") String type);
 
-
+  @Modifying
+  @Query("UPDATE Creature c SET c.adoptionStatus = 'adopted' WHERE c.id = :id")
+  public Creature AdoptionStatusAdopted(@Param("id") Integer id);
 }

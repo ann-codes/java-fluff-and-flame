@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import postData from "../functions/postData";
+import putData from "../functions/putData";
 import fetchData from "../functions/fetchData";
 import AdminAdoptReqRow from "../components/AdminAdoptReqRow";
 import AdminAdoptReqRowDone from "../components/AdminAdoptReqRowDone";
@@ -10,14 +10,10 @@ const AdminAdoptReqIndex = props => {
   const [appDecision, setAppDecision] = useState({});
 
   const apiEndpoint = "/api/v1/adoption/applications";
-  const apiPostEndpoint = "/api/v1/applicants/decision";
+  const apiPutEndpoint = "/api/v1/adoption/application/decision";
 
   const fetchApplicants = () => fetchData(apiEndpoint, setApplicants);
   useEffect(fetchApplicants, []);
-
-
-console.log(applicants)
-
 
   const handleChange = event => {
     const { name, value, id } = event.currentTarget;
@@ -32,30 +28,44 @@ console.log(applicants)
 
   const submitDecision = event => {
     const matchId = Number(event.target.getAttribute("data-check-id"));
+
     if (appDecision.id === matchId) {
+      const foundApplicant = applicants.find(app => app.id === matchId);
+
       if (appDecision.application_status === "approved") {
-        const payloadApproved = {
-          app_decision: "approved",
-          app_id: appDecision.id,
-          creature_id: appDecision.creature_id
+        const creaturePayload = {
+          ...foundApplicant.creature,
+          adoptionStatus: "adopted"
         };
-        postData(apiPostEndpoint, payloadApproved);
+        console.log("creaturePayload", creaturePayload);
+        const payloadApproved = {
+          ...foundApplicant,
+          applicationStatus: "approved"
+        };
+        putData(
+          `/api/v1/adopted/${foundApplicant.creature.id}`,
+          creaturePayload
+        );
+        putData(`${apiPutEndpoint}/${matchId}/approved`, payloadApproved);
       } else if (appDecision.application_status === "denied") {
         const payloadDenied = {
-          app_decision: "denied",
-          app_id: appDecision.id,
-          creature_id: -1
+          ...foundApplicant,
+          applicationStatus: "denied"
         };
-        postData(apiPostEndpoint, payloadDenied);
+        putData(`${apiPutEndpoint}/${matchId}/denied`, payloadDenied);
       }
     }
   };
 
   const availToAdopt = applicants.filter(
-    app => app.creature.adoptionStatus === "available" && app.applicationStatus === "pending"
+    app =>
+      app.creature.adoptionStatus === "available" &&
+      app.applicationStatus === "pending"
   );
   const notAvailToAdopt = applicants.filter(
-    app => app.creature.adoptionStatus !== "available" || app.applicationStatus !== "pending"
+    app =>
+      app.creature.adoptionStatus !== "available" ||
+      app.applicationStatus !== "pending"
   );
 
   const mapApplicants = availToAdopt.map(app => (

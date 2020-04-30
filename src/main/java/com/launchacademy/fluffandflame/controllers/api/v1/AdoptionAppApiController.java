@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -59,6 +61,40 @@ public class AdoptionAppApiController {
           adoptionApplicationRepo.save(adoptionApplication), HttpStatus.CREATED);
     }
   }
+
+  @PutMapping("/adoption/application/decision/{id}/{result}")
+  public AdoptionApplication makeApplicationDecision(
+      @RequestBody AdoptionApplication newAdoptionApp,
+      @PathVariable Integer id, @PathVariable String result) {
+    if (result.equals("denied")) {
+      return adoptionApplicationRepo.findById(id).map(
+          adoptionApp -> {
+            adoptionApp.setName(newAdoptionApp.getName());
+            adoptionApp.setPhoneNumber(newAdoptionApp.getPhoneNumber());
+            adoptionApp.setEmail(newAdoptionApp.getEmail());
+            adoptionApp.setHomeStatus(newAdoptionApp.getHomeStatus());
+            adoptionApp.setApplicationStatus("denied");
+            adoptionApp.setCreature(newAdoptionApp.getCreature());
+            return adoptionApplicationRepo.save(adoptionApp);
+          }
+      ).orElseThrow(AdoptionAppNotFoundException::new);
+    } else if (result.equals("approved")) {
+      return adoptionApplicationRepo.findById(id).map(
+          adoptionApp -> {
+            adoptionApp.setName(newAdoptionApp.getName());
+            adoptionApp.setPhoneNumber(newAdoptionApp.getPhoneNumber());
+            adoptionApp.setEmail(newAdoptionApp.getEmail());
+            adoptionApp.setHomeStatus(newAdoptionApp.getHomeStatus());
+            adoptionApp.setApplicationStatus("approved");
+            adoptionApp.setCreature(newAdoptionApp.getCreature());
+            return adoptionApplicationRepo.save(adoptionApp);
+          }
+      ).orElseThrow(AdoptionAppNotFoundException::new);
+    } else {
+      return null;
+    }
+  }
+
 
 }
 
