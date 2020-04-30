@@ -7,7 +7,7 @@ const AdoptionFormButton = props => {
 
   const clickForm = () => setToggleForm(!toggleForm);
 
-  const formProcess = () => {
+  const formProcessing = () => {
     if (isSubmitted) {
       return "Thank you for submitting!";
     } else if (toggleForm) {
@@ -30,38 +30,17 @@ const AdoptionFormButton = props => {
         onClick={clickForm}
         disabled={isSubmitted}
       >
-        {formProcess()}
+        {formProcessing()}
       </button>
-      {toggleForm && "HOWDY"}
+      {toggleForm && (
+        <AdoptionForm
+          submitState={setIsSubmitted}
+          showForm={setToggleForm}
+          attachedCreature={props.attachedCreature}
+        />
+      )}
     </div>
   );
 };
 
 export default AdoptionFormButton;
-
-
-// ORIGINAL RETURN STATEMENT
-// return (
-//   <div>
-//     {isSubmitted && (
-//       <h3 className="callout">
-//         Your request has been successfully submitted and is now in process. We
-//         will contact you in 3-5 days.
-//       </h3>
-//     )}
-//     <button
-//       className="button large"
-//       onClick={clickForm}
-//       disabled={isSubmitted}
-//     >
-//       {formProcess()}
-//     </button>
-//     {toggleForm && (
-//       <AdoptionForm
-//         submitState={setIsSubmitted}
-//         showForm={setToggleForm}
-//         creatureId={props.creatureId}
-//       />
-//     )}
-//   </div>
-// );

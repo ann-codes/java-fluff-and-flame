@@ -18,7 +18,7 @@ public class MasterSeeder implements CommandLineRunner {
     creatureTypeSeeder.seed();
     creatureSeeder.seed();
     surrenderApplicationSeeder.seed();
-    adoptionApplicationSeeder.seed();
+//    adoptionApplicationSeeder.seed();
 
   }
 }

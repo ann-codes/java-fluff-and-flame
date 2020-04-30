@@ -21,7 +21,7 @@ const CreatureInformation = props => {
         <span className="bold-me">My Story: </span>
         {props.creature.adoptionStory}
       </p>
-      <AdoptionFormButton creatureId={props.creature.id} />
+      <AdoptionFormButton attachedCreature={props.creature} />
     </div>
   );
 };

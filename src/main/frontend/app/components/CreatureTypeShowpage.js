@@ -14,7 +14,9 @@ const CreatureTypeShowpage = props => {
 
   useEffect(fetchCreature, {});
 
-  if (creature.creatureType !== undefined) {
+  if (creature === null) {
+    return <NotFound404 />;
+  } else if (creature.creatureType !== undefined) {
     if (creature.creatureType.type !== undefined) {
       if (
         currentCreature === creature.creatureType.type &&
@@ -27,7 +29,7 @@ const CreatureTypeShowpage = props => {
     }
   }
 
-  return <h2>LOADING...</h2>
+  return <NotFound404 />;
 };
 
 export default CreatureTypeShowpage;

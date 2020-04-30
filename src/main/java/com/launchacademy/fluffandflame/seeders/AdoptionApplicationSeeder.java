@@ -27,7 +27,7 @@ public class AdoptionApplicationSeeder {
     newAdApp.setEmail("email@email.com");
     newAdApp.setHomeStatus("own");
     newAdApp.setApplicationStatus("pending");
-    newAdApp.setCreature(creatureRepo.findByName("Test Thing"));
+    newAdApp.setCreature(creatureRepo.findByName("Test Thing2"));
 
     List<AdoptionApplication> allApps = adoptionApplicationRepo.findAll();
 
