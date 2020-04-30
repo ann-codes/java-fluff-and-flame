@@ -40,7 +40,6 @@ const AdoptionForm = props => {
         applicationStatus: "pending",
         creature: props.attachedCreature
       };
-      console.log(payload)
       postData(postAPIpath, payload, props.submitState);
       clearForm();
       props.showForm(false)

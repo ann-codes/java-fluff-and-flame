@@ -4,6 +4,7 @@ import com.launchacademy.fluffandflame.models.Creature;
 import com.launchacademy.fluffandflame.repositories.CreatureRepo;
 import com.launchacademy.fluffandflame.repositories.CreatureTypeRepo;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ public class CreatureSeeder {
   private CreatureRepo creatureRepo;
   private CreatureTypeRepo creatureTypeRepo;
 
+  @Autowired
   public CreatureSeeder(CreatureRepo creatureRepo, CreatureTypeRepo creatureTypeRepo) {
     this.creatureRepo = creatureRepo;
     this.creatureTypeRepo = creatureTypeRepo;
