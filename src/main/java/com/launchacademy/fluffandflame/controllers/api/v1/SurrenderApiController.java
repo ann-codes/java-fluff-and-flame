@@ -35,17 +35,17 @@ public class SurrenderApiController {
   }
 
   @NoArgsConstructor
-  private class SuurenderAppNotFoundException extends RuntimeException {
+  private class SurenderAppNotFoundException extends RuntimeException {
 
   }
 
   @ControllerAdvice
-  private class SuurenderAppNotFoundAdvice {
+  private class SurenderAppNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(SuurenderAppNotFoundException.class)
+    @ExceptionHandler(SurenderAppNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String urlNotFoundHandler(SuurenderAppNotFoundException ex) {
+    String urlNotFoundHandler(SurenderAppNotFoundException ex) {
       return ex.getMessage();
     }
   }
@@ -54,17 +54,6 @@ public class SurrenderApiController {
   public Iterable<SurrenderApplication> getAllSurrenderApplications() {
     return surrenderApplicationRepo.findAll();
   }
-
-//  @PostMapping("surrender/new")
-//  public SurrenderApplication create(
-//      @RequestBody @ModelAttribute SurrenderApplication surrenderApplication,
-//      BindingResult bindingResult) {
-//    if (bindingResult.hasErrors()) {
-//      throw new SuurenderAppNotFoundException();
-//    } else {
-//      return surrenderApplicationRepo.save(surrenderApplication);
-//    }
-//  }
 
   @PostMapping("surrender/new")
   public ResponseEntity create(@Valid @RequestBody SurrenderApplication surrenderApplication,
