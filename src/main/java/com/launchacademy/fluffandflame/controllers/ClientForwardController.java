@@ -1,17 +1,27 @@
 package com.launchacademy.fluffandflame.controllers;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+
+//@Controller
+//public class PathController {
+//  @GetMapping(value = {"/", "/pets"})
+//  public String index() {
+//    return "index";
+//  }
+//  @GetMapping(value = "/**/{path:[^\\.]*}")
+//  public String forward() {
+//    return "forward:/";
+//  }
+//}
 
 @Controller
-@RequestMapping(value = {"/", "/creatures/*"})
+//@RequestMapping(value = {"/", "/creatures/*"})
 public class ClientForwardController {
 
-  @GetMapping("/")
+  @GetMapping(value = {"/", "/creatures"})
   public String index() {
     return "index";
   }
@@ -20,22 +30,6 @@ public class ClientForwardController {
   public String redirectRootTEST() {
     return "redirect:/creatures";
   }
-
-//
-//  @GetMapping("/")
-//  public String redirectRoot() {
-//    return "index";
-//  }
-
-//  @GetMapping("/")
-//  public String redirectRoot() {
-//    return "redirect:/creatures";
-//  }
-//
-//  @GetMapping
-//  public String redirectRoot() {
-//    return "redirect:/creatures";
-//  }
 
   @GetMapping(value = "/**/{path:[^\\.]*}")
   public String forward() {

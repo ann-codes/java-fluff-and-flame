@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,7 +38,10 @@ public class CreatureApiController {
   }
 
   @NoArgsConstructor
-  private class NotFoundException extends RuntimeException { }
+  private class NotFoundException extends RuntimeException {
+
+  }
+
   @ControllerAdvice
   private class NotFoundAdvice {
 
@@ -107,6 +111,21 @@ public class CreatureApiController {
       return Optional.empty();
     }
   }
+
+  @PutMapping("adopted/{id}")
+  public Creature adoptCreature(@RequestBody Creature updateCreature, @PathVariable Integer id) {
+    return creatureRepo.findById(id).map(creature -> {
+      creature.setName(updateCreature.getName());
+      creature.setCreatureImg(updateCreature.getCreatureImg());
+      creature.setAge(updateCreature.getAge());
+      creature.setVaccinationStatus(updateCreature.getVaccinationStatus());
+      creature.setAdoptionStory(updateCreature.getAdoptionStory());
+      creature.setAdoptionStatus("adopted");
+      creature.setCreatureType(updateCreature.getCreatureType());
+      return creatureRepo.save(creature);
+    }).orElseThrow(NotFoundException::new);
+  }
+// curl -X PUT localhost:8080/api/v1/adopted/7 -H 'Content-type:application/json' -d '{"id": 7,"name": "Liddy Kiddy","creatureImg": "https://media1.tenor.com/images/aae006222ffe56fa053e66521319010c/tenor.gif","age": 8,"vaccinationStatus": true,"adoptionStory": "Happy Saint Paddys Day","adoptionStatus": "available","creatureType": {"id": 2,"type": "Nyan Cat","description": "A mystical flying space feline in the shape of a pop tart.","imgUrl": "https://i.pinimg.com/originals/93/e4/cd/93e4cd939da891cba51e740039b4f4d2.png"}}'
 
   // tests =============== delete later?
   @PostMapping("creature/types")
