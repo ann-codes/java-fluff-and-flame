@@ -8,6 +8,7 @@ import AdminMain from "./AdminMain";
 import IndexAdopted from "./IndexAdopted";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
+import UserMain from "./UserMain";
 
 const App = props => {
   return (
@@ -32,6 +33,7 @@ const App = props => {
               path="/creatures/:type/:id"
               component={CreatureTypeShowpage}
             />
+            <Route exact path="/pending_applications" component={UserMain} />
           </Switch>
         </div>
         <Footer />
