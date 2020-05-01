@@ -18,7 +18,7 @@ const AdminAdoptReqRow = props => {
         {props.applicant.applicationStatus === "pending" ? (
           <form onSubmit={props.submitDecision} data-check-id={props.applicant.id}>
             <select
-              name="applicationStatus"
+              name="application_status" // DONT CHANGE THIS
               id={props.applicant.id}
               data-creature_id={props.applicant.creature.id}
               onChange={props.handleChange}

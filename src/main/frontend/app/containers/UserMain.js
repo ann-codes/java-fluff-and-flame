@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import fetchData from "../functions/fetchData";
+import deleteData from "../functions/deleteData";
+
 import TableHeadings from "../components/TableHeadings";
 import UserAdoptReqRow from "../components/UserAdoptReqRow";
 
@@ -20,9 +22,10 @@ const UserMain = props => {
   };
 
   const deleteOnSubmit = event => {
-    event.preventDefault();
     const matchId = Number(event.target.getAttribute("data-check-id"));
-    console.log(matchId); // =========================
+    const appToDelete = applicantsAvail.find(app => app.id === matchId);
+    const apiEndpointDelete = `/api/v1/adoption/application/delete/${matchId}`;
+    deleteData(apiEndpointDelete, appToDelete);
   };
 
   const mapAvailApps = applicantsAvail.map(app => (
