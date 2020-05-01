@@ -39,8 +39,6 @@ const AdoptionFormEdit = props => {
     ) {
       putData(putApiPath, updateApplicant);
       setUpdatedNotice(true);
-
-      //   props.history.push("/pending_applications");
     }
   };
 
