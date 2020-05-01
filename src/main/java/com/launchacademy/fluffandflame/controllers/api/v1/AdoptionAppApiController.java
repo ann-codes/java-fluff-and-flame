@@ -4,6 +4,7 @@ import com.launchacademy.fluffandflame.models.AdoptionApplication;
 import com.launchacademy.fluffandflame.repositories.AdoptionApplicationRepo;
 import com.launchacademy.fluffandflame.repositories.CreatureRepo;
 import java.util.List;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,11 @@ public class AdoptionAppApiController {
     return adoptionApplicationRepo.findAllByAvailableCreature();
   }
 
+  @GetMapping("/adoption/application/find/{id}")
+  public Optional<AdoptionApplication> getApplicationById(@PathVariable Integer id) {
+    return adoptionApplicationRepo.findById(id);
+  }
+
   @PostMapping("/adoption/application/new")
   public ResponseEntity create(@Valid @RequestBody AdoptionApplication adoptionApplication,
       BindingResult bindingResult) {
@@ -66,6 +72,22 @@ public class AdoptionAppApiController {
       return new ResponseEntity<AdoptionApplication>(
           adoptionApplicationRepo.save(adoptionApplication), HttpStatus.CREATED);
     }
+  }
+
+  @PutMapping("/adoption/application/edit/{id}")
+  public AdoptionApplication updateApplication(
+      @RequestBody AdoptionApplication editedAdoptionApp, @PathVariable Integer id) {
+    return adoptionApplicationRepo.findById(id).map(
+        adoptionApp -> {
+          adoptionApp.setName(editedAdoptionApp.getName());
+          adoptionApp.setPhoneNumber(editedAdoptionApp.getPhoneNumber());
+          adoptionApp.setEmail(editedAdoptionApp.getEmail());
+          adoptionApp.setHomeStatus(editedAdoptionApp.getHomeStatus());
+          adoptionApp.setApplicationStatus(editedAdoptionApp.getApplicationStatus());
+          adoptionApp.setCreature(editedAdoptionApp.getCreature());
+          return adoptionApplicationRepo.save(adoptionApp);
+        }
+    ).orElseThrow(AdoptionAppNotFoundException::new);
   }
 
   @PutMapping("/adoption/application/decision/{id}/{result}")
@@ -106,7 +128,6 @@ public class AdoptionAppApiController {
     adoptionApplicationRepo.deleteById(id);
     return adoptionApplicationRepo.findAll();
   }
-
 
 
 }

@@ -2,7 +2,7 @@ Individual Project converting the original [Fluff and Flame]() to a Java Spring 
 
 After starting the server, it will seed 1-2 file in each table.
 
-Also recommended to run below to seed additional data.
+Also recommended to run below in terminal to seed additional data.
 
 ```
 psql adopt_a_pet

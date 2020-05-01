@@ -72,7 +72,7 @@ const NewCreatureForm = props => {
 
   return (
     <form className="callout surrender-form" onSubmit={handleSubmit}>
-      <h2>Surrender Your Creature</h2>
+      <h2 className="text-center">Surrender Your Creature</h2>
       <ErrorList errors={errors} />
       <label>Applicant Name*:</label>
       <input

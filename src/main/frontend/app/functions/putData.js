@@ -1,4 +1,4 @@
-const postData = (apiPath, payload) => {
+const putData = (apiPath, payload) => {
     fetch(apiPath, {
       method: "PUT",
       body: JSON.stringify(payload),
@@ -14,8 +14,8 @@ const postData = (apiPath, payload) => {
         }
       })
       .then(response => response.json())
-      .catch(error => console.error(`Error in Post fetch: ${error.message}`));
+      .catch(error => console.error(`Error in Put fetch: ${error.message}`));
   };
   
-  export default postData;
+  export default putData;
   

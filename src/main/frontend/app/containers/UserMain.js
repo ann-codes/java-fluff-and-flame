@@ -13,14 +13,6 @@ const UserMain = props => {
   const fetchAvailApps = () => fetchData(apiEndpointGet, setApplicantsAvail);
   useEffect(fetchAvailApps, []);
 
-  console.log(applicantsAvail); // =========================
-
-  const editOnSubmit = event => {
-    event.preventDefault();
-    const matchId = Number(event.target.getAttribute("data-check-id"));
-    console.log(matchId); // =========================
-  };
-
   const deleteOnSubmit = event => {
     const matchId = Number(event.target.getAttribute("data-check-id"));
     const appToDelete = applicantsAvail.find(app => app.id === matchId);
@@ -32,14 +24,13 @@ const UserMain = props => {
     <UserAdoptReqRow
       key={app.id}
       applicant={app}
-      editOnSubmit={editOnSubmit}
       deleteOnSubmit={deleteOnSubmit}
     />
   ));
 
   return (
     <Fragment>
-      <h2>User Portal</h2>
+      <h2 className="text-center">User Portal</h2>
       <div>
         <h3>Pending Adoption Requests</h3>
         <table className="hover">
