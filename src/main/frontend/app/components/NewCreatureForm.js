@@ -1,8 +1,23 @@
 import React, { useState, useEffect } from "react";
+import ErrorList from "./ErrorList";
 import fetchData from "../functions/fetchData";
+import validateForm from "../functions/validateForm";
 
 const NewCreatureForm = props => {
-  // loading dropdown information and finding creatureType object
+  const defaultForm = {
+    name: "",
+    phoneNumber: "",
+    email: "",
+    petName: "",
+    petAge: "",
+    petType: "",
+    petImageUrl: "",
+    vaccinationStatus: ""
+  };
+
+  const [formState, setFormState] = useState(defaultForm);
+  const [errors, setErrors] = useState({});
+
   const [creatureTypes, setCreatureTypes] = useState([]);
   const apiEndpoint = "/api/v1/all/types";
   const fetchCreatureTypes = () => fetchData(apiEndpoint, setCreatureTypes);
@@ -18,52 +33,47 @@ const NewCreatureForm = props => {
       ));
   }
 
-  const defaultForm = {
-    name: "",
-    phoneNumber: "",
-    email: "",
-    petName: "",
-    petAge: "",
-    petType: "",
-    petImageUrl: "",
-    vaccinationStatus: ""
-  };
-
-  const [formState, setFormState] = useState(defaultForm);
-
   const clearForm = () => setFormState(defaultForm);
 
   const handleChange = event => {
     setFormState({
       ...formState,
-      // petType: formState.petType,
       [event.currentTarget.id]: event.currentTarget.value
     });
-    console.log(event.currentTarget.id, event.currentTarget.value); //// ============ 
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    let convertPayload = {
-      name: formState.name,
-      phoneNumber: formState.phoneNumber,
-      email: formState.email,
-      petName: formState.petName,
-      petAge: formState.petAge,
-      petImageUrl: formState.petImageUrl,
-      vaccinationStatus: formState.vaccinationStatus,
-      applicationStatus: "pending",
-      creatureType: {
-        ...creatureTypes.find(eachType => eachType.type === formState.petType)
-      }
-    };
-    props.addNewCreature(convertPayload);
-    setFormState(defaultForm);
+    if (
+      validateForm(
+        ["name", "phoneNumber", "email", "petName", "petAge", "petImageUrl"],
+        formState,
+        setErrors
+      )
+    ) {
+      const convertPayload = {
+        name: formState.name,
+        phoneNumber: formState.phoneNumber,
+        email: formState.email,
+        petName: formState.petName,
+        petAge: formState.petAge,
+        petImageUrl: formState.petImageUrl,
+        vaccinationStatus: formState.vaccinationStatus,
+        applicationStatus: "pending",
+        creatureType: {
+          ...creatureTypes.find(eachType => eachType.type === formState.petType)
+        }
+      };
+      props.addNewCreature(convertPayload);
+      setFormState(defaultForm);
+    }
+
   };
 
   return (
-    <form className="new-creature-form" onSubmit={handleSubmit}>
+    <form className="callout surrender-form" onSubmit={handleSubmit}>
       <h2>Surrender Your Creature</h2>
+      <ErrorList errors={errors} />
       <label>Applicant Name*:</label>
       <input
         name="name"
@@ -71,7 +81,6 @@ const NewCreatureForm = props => {
         type="text"
         value={formState.name}
         onChange={handleChange}
-        required
       />
       <label>Phone Number*:</label>
       <input
@@ -80,7 +89,6 @@ const NewCreatureForm = props => {
         type="text"
         value={formState.phoneNumber}
         onChange={handleChange}
-        required
       />
       <label>Email Address*:</label>
       <input
@@ -89,7 +97,6 @@ const NewCreatureForm = props => {
         type="text"
         value={formState.email}
         onChange={handleChange}
-        required
       />
       <label>Pet Name*:</label>
       <input
@@ -98,7 +105,6 @@ const NewCreatureForm = props => {
         type="text"
         value={formState.petName}
         onChange={handleChange}
-        required
       />
       <label>Pet Age*:</label>
       <input
@@ -107,7 +113,6 @@ const NewCreatureForm = props => {
         type="number"
         value={formState.petAge}
         onChange={handleChange}
-        required
       />
       <label>Pet Type*:</label>
       <select
@@ -129,7 +134,6 @@ const NewCreatureForm = props => {
         type="text"
         value={formState.petImageUrl}
         onChange={handleChange}
-        required
       />
       <label>Vaccination Status*:</label>
       <select
