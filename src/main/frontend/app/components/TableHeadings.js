@@ -1,6 +1,6 @@
 import React from "react";
 
-const AdminAdoptReqHead = () => {
+const TableHeadings = (props) => {
   return (
     <thead>
       <tr>
@@ -11,10 +11,10 @@ const AdminAdoptReqHead = () => {
         <th>Home Status</th>
         <th>Creature Name</th>
         <th>Creature Status</th>
-        <th>Decision</th>
+        <th>{props.lastColumnName}</th>
       </tr>
     </thead>
   );
 };
 
-export default AdminAdoptReqHead;
+export default TableHeadings;

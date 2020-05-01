@@ -26,10 +26,10 @@ public class ClientForwardController {
     return "index";
   }
 
-  @GetMapping("/test")
-  public String redirectRootTEST() {
-    return "redirect:/creatures";
-  }
+//  @GetMapping("/test")
+//  public String redirectRootTEST() {
+//    return "redirect:/creatures";
+//  }
 
   @GetMapping(value = "/**/{path:[^\\.]*}")
   public String forward() {

@@ -23,13 +23,12 @@ ul.menu-new li {
   display: inline-block;
   padding: 18px 26px;
   font-weight:bolder;
+  transition: 0.5s;
 }
 
 ul.menu-new li:hover {
   background-color: white;
-  font-weight: normal;
 }
-
 
 .container {
   max-width: 1000px;

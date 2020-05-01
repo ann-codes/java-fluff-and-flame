@@ -3,7 +3,7 @@ import putData from "../functions/putData";
 import fetchData from "../functions/fetchData";
 import AdminAdoptReqRow from "../components/AdminAdoptReqRow";
 import AdminAdoptReqRowDone from "../components/AdminAdoptReqRowDone";
-import AdminAdoptReqHead from "../components/AdminAdoptReqHead";
+import TableHeadings from "../components/TableHeadings";
 
 const AdminAdoptReqIndex = props => {
   const [applicants, setApplicants] = useState([]);
@@ -90,12 +90,12 @@ const AdminAdoptReqIndex = props => {
     <div>
       <h3>Pending Adoption Requests</h3>
       <table className="hover">
-        <AdminAdoptReqHead />
+        <TableHeadings lastColumnName={"Decision"} />
         <tbody>{mapApplicants}</tbody>
       </table>
       <h3>Decisions Made</h3>
       <table className="hover">
-        <AdminAdoptReqHead />
+        <TableHeadings lastColumnName={"Decision"} />
         <tbody>{mapDoneApps}</tbody>
       </table>
     </div>

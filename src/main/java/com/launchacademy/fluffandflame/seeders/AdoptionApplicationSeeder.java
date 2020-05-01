@@ -30,8 +30,9 @@ public class AdoptionApplicationSeeder {
     newAdApp.setCreature(creatureRepo.findByName("Test Thing2"));
 
     List<AdoptionApplication> allApps = adoptionApplicationRepo.findAll();
-
-    adoptionApplicationRepo.save(newAdApp);
+    if (allApps.size() == 0) {
+      adoptionApplicationRepo.save(newAdApp);
+    }
   }
 
 }

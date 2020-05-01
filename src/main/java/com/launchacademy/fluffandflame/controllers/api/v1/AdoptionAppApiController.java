@@ -51,6 +51,11 @@ public class AdoptionAppApiController {
     return adoptionApplicationRepo.findAll();
   }
 
+  @GetMapping("/adoption/applications/available")
+  public Iterable<AdoptionApplication> getAllAppsWithAvailableCreatures() {
+    return adoptionApplicationRepo.findAllByAvailableCreature();
+  }
+
   @PostMapping("/adoption/application/new")
   public ResponseEntity create(@Valid @RequestBody AdoptionApplication adoptionApplication,
       BindingResult bindingResult) {

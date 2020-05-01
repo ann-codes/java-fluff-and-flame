@@ -11,7 +11,10 @@ const Navigation = props => {
         <Link to="/adopted">HAPPY ADOPTIONS</Link>
       </li>
       <li>
-        <Link to="/adoptions/new">SURRENDER YOUR CREATURE</Link>
+        <Link to="/adoptions/new">CREATURE SURRENDER</Link>
+      </li>
+      <li>
+        <Link to="/pending_applications">USER LOGIN</Link>
       </li>
       <li>
         <Link to="/admin">ADMIN LOGIN</Link>
