@@ -16,7 +16,7 @@ const NewCreature = props => {
 
   let submittedResponse = "Your request is in process.";
   if (submitted) {
-    return <h1>{submittedResponse}</h1>;
+    return <h2 className="align-center">{submittedResponse}</h2>;
   } else {
     return <NewCreatureForm addNewCreature={addNewCreature} />;
   }
