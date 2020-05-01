@@ -53,6 +53,18 @@ ul.menu-new li:hover {
   }
 }
 
+.fade-out {
+  animation: fadeOut ease 4s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 h1,
 h2,
 h3 {
