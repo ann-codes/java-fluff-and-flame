@@ -1,6 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UserAdoptReqRow = props => {
+
+  const linkString = `/pending_applications/edit/${props.applicant.id}`;
+
   return (
     <tr>
       <td>{props.applicant.id}</td>
@@ -18,9 +22,13 @@ const UserAdoptReqRow = props => {
       </td>
       <td>{props.applicant.creature.adoptionStatus}</td>
       <td>
-        <form onSubmit={props.editOnSubmit} data-check-id={props.applicant.id}>
-          <input className="button success" type="submit" value="Edit" />
-        </form>
+        <Link
+          className="button success"
+          data-check-id={props.applicant.id}
+          to={linkString}
+        >
+          Edit
+        </Link>
         <form
           onSubmit={props.deleteOnSubmit}
           data-check-id={props.applicant.id}

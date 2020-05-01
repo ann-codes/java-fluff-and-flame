@@ -9,6 +9,7 @@ import IndexAdopted from "./IndexAdopted";
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
 import UserMain from "./UserMain";
+import UserAdoptReqEdit from "../components/UserAdoptReqEdit"
 
 const App = props => {
   return (
@@ -34,6 +35,8 @@ const App = props => {
               component={CreatureTypeShowpage}
             />
             <Route exact path="/pending_applications" component={UserMain} />
+            <Route exact path="/pending_applications/edit/:id" component={UserAdoptReqEdit} />
+
           </Switch>
         </div>
         <Footer />
@@ -43,12 +46,3 @@ const App = props => {
 };
 
 export default App;
-
-// <Switch>
-//   <Route exact path="/admin" component={AdminMain} />
-//   <Route exact path="/adopted" component={IndexAdopted} />
-//   <Route exact path="/surrender" component={NewCreature} />
-//   <Route exact path="/creatures" component={IndexTypes} />
-//   <Route exact path="/creatures/:type" component={IndexCreature} />
-//   <Route exact path="/creatures/:type/:id" component={CreatureTypeShowpage} />
-// </Switch>;
