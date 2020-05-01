@@ -1,12 +1,6 @@
 import React from "react";
 
-const AdminAdoptReqRowDone = props => {
-  // because it is not possible to do update statements in JPA w/ joins
-  let appStatus = props.applicant.applicationStatus;
-  if (props.applicant.applicationStatus === "pending") {
-    appStatus = "creature not available"
-  }
-
+const UserAdoptReqRow = props => {
   return (
     <tr>
       <td>{props.applicant.id}</td>
@@ -23,9 +17,19 @@ const AdminAdoptReqRowDone = props => {
         </a>
       </td>
       <td>{props.applicant.creature.adoptionStatus}</td>
-      <td>{appStatus}</td>
+      <td>
+        <form onSubmit={props.editOnSubmit} data-check-id={props.applicant.id}>
+          <input className="button success" type="submit" value="Edit" />
+        </form>
+        <form
+          onSubmit={props.deleteOnSubmit}
+          data-check-id={props.applicant.id}
+        >
+          <input className="button alert" type="submit" value="Delete" />
+        </form>
+      </td>
     </tr>
   );
 };
 
-export default AdminAdoptReqRowDone;
+export default UserAdoptReqRow;

@@ -14,6 +14,13 @@ public interface AdoptionApplicationRepo extends
   public List<AdoptionApplication> findAll();
   public Optional<AdoptionApplication> findById(Integer id);
 
+  @Query("SELECT a FROM AdoptionApplication a JOIN Creature c on a.creature = c.id WHERE c.adoptionStatus = 'available'")
+  public List<AdoptionApplication> findAllByAvailableCreature();
+
+//  @Query("SELECT c FROM Creature c JOIN CreatureType t on c.creatureType = t.id WHERE t.type = :type AND c.adoptionStatus = 'available'")
+//  public List<Creature> findAllByCreatureType(@Param("type") String type);
+
+
   @Modifying
   @Query("UPDATE AdoptionApplication a SET a.applicationStatus = 'denied' WHERE a.id = :id")
   public AdoptionApplication ApplicationRequestDenied(@Param("id") Integer id);
@@ -25,8 +32,5 @@ public interface AdoptionApplicationRepo extends
 //  @Modifying
 //  @Query("update User u set u.active = false where u.lastLoginDate < :date")
 //  void deactivateUsersNotLoggedInSince(@Param("date") LocalDate date);
-
-//  @Query("SELECT c FROM Creature c JOIN CreatureType t on c.creatureType = t.id WHERE t.type = :type AND c.adoptionStatus = 'available'")
-//  public List<Creature> findAllByCreatureType(@Param("type") String type);
   
 }

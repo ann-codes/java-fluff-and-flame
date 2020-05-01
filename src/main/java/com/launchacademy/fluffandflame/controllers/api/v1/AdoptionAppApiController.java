@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,11 @@ public class AdoptionAppApiController {
   @GetMapping("/adoption/applications")
   public Iterable<AdoptionApplication> getAllAdoptionApplications() {
     return adoptionApplicationRepo.findAll();
+  }
+
+  @GetMapping("/adoption/applications/available")
+  public Iterable<AdoptionApplication> getAllAppsWithAvailableCreatures() {
+    return adoptionApplicationRepo.findAllByAvailableCreature();
   }
 
   @PostMapping("/adoption/application/new")
@@ -94,6 +100,13 @@ public class AdoptionAppApiController {
       return null;
     }
   }
+
+  @DeleteMapping("/adoption/application/delete/{id}")
+  public Iterable<AdoptionApplication> delete(@PathVariable Integer id) {
+    adoptionApplicationRepo.deleteById(id);
+    return adoptionApplicationRepo.findAll();
+  }
+
 
 
 }
