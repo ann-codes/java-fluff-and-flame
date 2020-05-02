@@ -1,17 +1,14 @@
 package com.launchacademy.fluffandflame.models;
 
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import javax.validation.constraints.Size.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -43,12 +40,5 @@ public class CreatureType {
   @URL
   @Column(name = "img_url")
   private String imgUrl;
-
-
-//  @OneToMany(mappedBy = "creatureType", orphanRemoval = false)
-//  private List creatures = (List) new ArrayList<Creature>();
-//  public List getCreatures() {
-//    return creatures;
-//  }
 
 }

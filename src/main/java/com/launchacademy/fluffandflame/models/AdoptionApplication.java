@@ -30,12 +30,6 @@ public class AdoptionApplication {
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
-  //  CREATE TABLE adoption_applications (
-  //    id SERIAL PRIMARY KEY,
-  //    name VARCHAR(255) NOT NULL,
-  //  phone_number VARCHAR(255) NOT NULL,
-  //  email VARCHAR(255) NOT NULL,
-
   @NotBlank
   @Column(name = "name")
   private String name;
@@ -48,10 +42,6 @@ public class AdoptionApplication {
   @Email
   @Column(name = "email")
   private String email;
-
-  //  home_status VARCHAR(255) NOT NULL,
-  //  application_status VARCHAR(255),
-  //  creature_id INTEGER REFERENCES adoptable_creatures(id) NOT NULL
 
   @NotBlank
   @Column(name = "home_status")

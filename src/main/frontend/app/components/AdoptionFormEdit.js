@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import ErrorList from "./ErrorList";
 import validateForm from "../functions/validateForm";
 import putData from "../functions/putData";
-import { withRouter } from "react-router";
 
 const AdoptionFormEdit = props => {
   const [updateApplicant, setUpdateApplicant] = useState(props.updateApplicant);
+  const [updatedNotice, setUpdatedNotice] = useState(false);
   const [errors, setErrors] = useState({});
 
   const putApiPath = `/api/v1/adoption/application/edit/${updateApplicant.id}`;
+
+  setTimeout(() => setUpdatedNotice(false), 6000);
 
   const clearForm = () => {
     setUpdateApplicant({
@@ -36,14 +38,14 @@ const AdoptionFormEdit = props => {
       )
     ) {
       putData(putApiPath, updateApplicant);
-
-    //   props.history.push("/pending_applications");
+      setUpdatedNotice(true);
     }
   };
 
   return (
     <form className="callout" onSubmit={onEditSubmit}>
       <ErrorList errors={errors} />
+      {updatedNotice && <h2 className="fade-out">Update Successful</h2>}
       <label>
         Applicant Name*:
         <input
@@ -104,4 +106,4 @@ const AdoptionFormEdit = props => {
   );
 };
 
-export default withRouter(AdoptionFormEdit);
+export default AdoptionFormEdit;

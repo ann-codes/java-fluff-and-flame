@@ -67,7 +67,6 @@ const NewCreatureForm = props => {
       props.addNewCreature(convertPayload);
       setFormState(defaultForm);
     }
-
   };
 
   return (

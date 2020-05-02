@@ -23,20 +23,31 @@ public class SurrenderApplicationSeeder {
   public void seed() {
 
     SurrenderApplication newSurApp = new SurrenderApplication();
-    newSurApp.setName("Some Guy Giving up His Pet");
+    newSurApp.setName("Joey NotAPetOwner");
     newSurApp.setPhoneNumber("666-666-6666");
     newSurApp.setEmail("email@email.com");
-    newSurApp.setPetName("Poor Abandoned Pet");
+    newSurApp.setPetName("Abandoned Jimmy");
     newSurApp.setPetAge(666);
     newSurApp.setPetImageUrl("https://i.imgur.com/Vvh2s1y.png");
     newSurApp.setVaccinationStatus(true);
     newSurApp.setApplicationStatus("pending");
-    newSurApp.setCreatureType(creatureTypeRepo.findByType("Testasaurus"));
+    newSurApp.setCreatureType(creatureTypeRepo.findByType("Dragon"));
+
+    SurrenderApplication newSurApp2 = new SurrenderApplication();
+    newSurApp2.setName("Jimmy NotAPetOwner");
+    newSurApp2.setPhoneNumber("666-666-6666");
+    newSurApp2.setEmail("email@email2.com");
+    newSurApp2.setPetName("Abandoned Joey");
+    newSurApp2.setPetAge(555);
+    newSurApp2.setPetImageUrl("https://i.imgur.com/Vvh2s1y.png");
+    newSurApp2.setVaccinationStatus(false);
+    newSurApp2.setApplicationStatus("pending");
+    newSurApp2.setCreatureType(creatureTypeRepo.findByType("Dragon"));
 
     List<SurrenderApplication> allSurrenderApps = surrenderApplicationRepo.findAll();
     if (allSurrenderApps.size() == 0) {
-      System.out.println("NONE FOUND ADDING " + newSurApp.getName());
       surrenderApplicationRepo.save(newSurApp);
+      surrenderApplicationRepo.save(newSurApp2);
     }
 
   }

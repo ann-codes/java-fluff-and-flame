@@ -9,8 +9,6 @@ const NewCreature = props => {
 
   const addNewCreature = formPayLoad => {
     event.preventDefault();
-
-    console.log(formPayLoad); /// ==============================
     postData(apiPath, formPayLoad, setSubmitted);
   };
 

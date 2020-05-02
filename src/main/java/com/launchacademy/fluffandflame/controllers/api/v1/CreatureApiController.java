@@ -58,25 +58,16 @@ public class CreatureApiController {
     return creatureTypeRepo.findAll();
   }
 
-//  @GetMapping("creature/types/{id}")
-//  public CreatureType getOneCreatureType(@PathVariable Integer id, Pageable pageable){
-//    return creatureTypeRepo.findById(id).orElseThrow(NotFoundException::new);
-//  }
-
-  // =========================== NOT used?
   @GetMapping("types/{typeName}")
   public CreatureType getOneCreatureByTypeName(@PathVariable String typeName) {
-    // doesnt seem to have a .orElseThrow method to chain
     try {
       creatureTypeRepo.findByType(typeName);
     } catch (NotFoundException ex) {
       System.out.println("NOT FOUND ==============>" + ex);
-      // doesn't work if not found? just blank
     }
     return creatureTypeRepo.findByType(typeName);
   }
 
-  // not used?
   @GetMapping("creatures/all")
   public Iterable<Creature> getCreatures() {
     return creatureRepo.findAll();
@@ -94,11 +85,6 @@ public class CreatureApiController {
 
   @GetMapping("adoptable/{typeName}")
   public Iterable<Creature> getAdoptableCreaturesByType(@PathVariable String typeName) {
-//    try {
-//      System.out.println(creatureRepo.findAllByCreatureType(typeName));
-//    } catch (NotFoundException ex) {
-//      System.out.println("NOT FOUND ==============>" + ex);
-//    }
     return creatureRepo.findAllByCreatureType(typeName);
   }
 
@@ -125,9 +111,7 @@ public class CreatureApiController {
       return creatureRepo.save(creature);
     }).orElseThrow(NotFoundException::new);
   }
-// curl -X PUT localhost:8080/api/v1/adopted/7 -H 'Content-type:application/json' -d '{"id": 7,"name": "Liddy Kiddy","creatureImg": "https://media1.tenor.com/images/aae006222ffe56fa053e66521319010c/tenor.gif","age": 8,"vaccinationStatus": true,"adoptionStory": "Happy Saint Paddys Day","adoptionStatus": "available","creatureType": {"id": 2,"type": "Nyan Cat","description": "A mystical flying space feline in the shape of a pop tart.","imgUrl": "https://i.pinimg.com/originals/93/e4/cd/93e4cd939da891cba51e740039b4f4d2.png"}}'
 
-  // tests =============== delete later?
   @PostMapping("creature/types")
   public ResponseEntity create(@Valid @RequestBody CreatureType creatureType,
       BindingResult bindingResult) {
@@ -138,8 +122,5 @@ public class CreatureApiController {
           HttpStatus.CREATED);
     }
   }
-
-  // curl -X POST localhost:8080/api/v1/creature/types -H 'Content-type:application/json' -d '{"type": "Testing2", "description": "Another Test", "imgUrl":"https://via.placeholder.com/150"}'
-
-
+  
 }

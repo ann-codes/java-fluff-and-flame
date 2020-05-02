@@ -128,12 +128,4 @@ public class AdoptionAppApiController {
     adoptionApplicationRepo.deleteById(id);
     return adoptionApplicationRepo.findAll();
   }
-
-
 }
-
-//curl -X POST localhost:8080/api/v1/adoption/application/new -H 'Content-type:application/json' -d
-// '{"name": "TEST ADD","phoneNumber": "617-666-8888","email": "bobs@burgers.com","homeStatus": "own","applicationStatus": "pending",
-// "creature": {"id": 2,"name": "Test Thing","creatureImg": "https://i.imgur.com/Vvh2s1y.png","age": 2,
-// "vaccinationStatus": false,"adoptionStory": "A testy mc testing tester doodle","adoptionStatus": "available",
-// "creatureType": {"id": 1,"type": "Testasaurus","description": "This is just a test.","imgUrl": "https://i.imgur.com/Vvh2s1y.png"}}}'

@@ -32,12 +32,6 @@ public class SurrenderApplication {
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
-//  CREATE TABLE pet_surrender_applications (
-//      id SERIAL PRIMARY KEY,
-//  name VARCHAR(255) NOT NULL,
-//  phone_number VARCHAR(255) NOT NULL,
-//  email VARCHAR(255) NOT NULL,
-
   @NotBlank
   @Column(name = "name")
   private String name;
@@ -51,10 +45,6 @@ public class SurrenderApplication {
   @Column(name = "email")
   private String email;
 
-  //  pet_name VARCHAR(255) NOT NULL,
-  //  pet_age INT NOT NULL,
-  //  pet_image_url VARCHAR(255) NOT NULL,
-
   @NotBlank
   @Column(name = "pet_name")
   private String petName;
@@ -67,10 +57,6 @@ public class SurrenderApplication {
   @URL
   @Column(name = "pet_image_url")
   private String petImageUrl;
-
-  //  vaccination_status BOOLEAN NOT NULL,
-  //  application_status VARCHAR(255) NOT NULL
-  //  pet_type_id INTEGER REFERENCES creature_types(id) NOT NULL,
 
   @NotNull
   @Column(name = "vaccination_status")

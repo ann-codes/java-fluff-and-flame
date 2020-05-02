@@ -27,11 +27,20 @@ public class AdoptionApplicationSeeder {
     newAdApp.setEmail("email@email.com");
     newAdApp.setHomeStatus("own");
     newAdApp.setApplicationStatus("pending");
-    newAdApp.setCreature(creatureRepo.findByName("Test Thing2"));
+    newAdApp.setCreature(creatureRepo.findByName("Bob Nyanley"));
+
+    AdoptionApplication newAdApp2 = new AdoptionApplication();
+    newAdApp2.setName("Bob Marley");
+    newAdApp2.setPhoneNumber("666-666-6666");
+    newAdApp2.setEmail("bobs@burgers.com");
+    newAdApp2.setHomeStatus("own");
+    newAdApp2.setApplicationStatus("pending");
+    newAdApp2.setCreature(creatureRepo.findByName("Bob Nyanley"));
 
     List<AdoptionApplication> allApps = adoptionApplicationRepo.findAll();
     if (allApps.size() == 0) {
       adoptionApplicationRepo.save(newAdApp);
+      adoptionApplicationRepo.save(newAdApp2);
     }
   }
 

@@ -1,7 +1,6 @@
 import React from "react";
 
 const AdminAdoptReqRowDone = props => {
-  // because it is not possible to do update statements in JPA w/ joins
   let appStatus = props.applicant.applicationStatus;
   if (props.applicant.applicationStatus === "pending") {
     appStatus = "creature not available"
