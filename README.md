@@ -1,4 +1,4 @@
-Individual Project converting the original React & Node/Express [Fluff and Flame](https://github.com/ann-codes/fluff-and-flame) project to a Java Spring backend.
+Individual Project converting the original React & Node/Express [Fluff and Flame](https://github.com/ann-codes/fluff-and-flame) group project to a Java Spring backend.
 
 This project meets all core and non-core user stories. 
 
