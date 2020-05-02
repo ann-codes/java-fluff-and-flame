@@ -23,29 +23,37 @@ public class CreatureSeeder {
   public void seed() {
 
     Creature newCreature = new Creature();
-    newCreature.setName("Test Thing1");
-    newCreature.setCreatureImg("https://i.imgur.com/Vvh2s1y.png");
+    newCreature.setName("Nyan Nyan");
+    newCreature.setCreatureImg("https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG");
     newCreature.setAge(2);
     newCreature.setVaccinationStatus(false);
-    newCreature.setAdoptionStory("A testy mc testing tester doodle");
-    newCreature.setAdoptionStatus("adopted");
-    newCreature.setCreatureType(creatureTypeRepo.findByType("Testasaurus"));
+    newCreature.setAdoptionStory("Was found at the end of a rainbow and is looking for a new sky home");
+    newCreature.setAdoptionStatus("available");
+    newCreature.setCreatureType(creatureTypeRepo.findByType("Nyan Cat"));
 
     Creature newCreature2 = new Creature();
-    newCreature2.setName("Test Thing2");
-    newCreature2.setCreatureImg("https://i.imgur.com/Vvh2s1y.png");
+    newCreature2.setName("Bob Nyanley");
+    newCreature2.setCreatureImg("https://s3.amazonaws.com/colorslive/jpg_512x512/377224-lglLt_mui26xjl6y.jpg");
     newCreature2.setAge(22);
-    newCreature2.setVaccinationStatus(true);
-    newCreature2.setAdoptionStory("A testy mc testing tester doodlely doo doo");
+    newCreature2.setVaccinationStatus(false);
+    newCreature2.setAdoptionStory("A Nyan cat in the shape of a burger.");
     newCreature2.setAdoptionStatus("available");
-    newCreature2.setCreatureType(creatureTypeRepo.findByType("Testasaurus"));
+    newCreature2.setCreatureType(creatureTypeRepo.findByType("Nyan Cat"));
+
+    Creature newCreature3 = new Creature();
+    newCreature3.setName("Galakrond");
+    newCreature3.setCreatureImg("https://gamepedia.cursecdn.com/wowpedia/thumb/e/e5/Galakrond%2C_the_Wretched.jpg/1032px-Galakrond%2C_the_Wretched.jpg");
+    newCreature3.setAge(7950);
+    newCreature3.setVaccinationStatus(true);
+    newCreature3.setAdoptionStory("A massive proto-dragon who is known as the progenitor of dragonkind.");
+    newCreature3.setAdoptionStatus("available");
+    newCreature3.setCreatureType(creatureTypeRepo.findByType("Dragon"));
 
     List<Creature> findCreature = creatureRepo.findAll();
     if (findCreature.size() == 0) {
-      System.out.println("NOT FOUND ADDING " + newCreature.getName() + " and "
-          + newCreature2.getName());
       creatureRepo.save(newCreature);
       creatureRepo.save(newCreature2);
+      creatureRepo.save(newCreature3);
     }
 
   }

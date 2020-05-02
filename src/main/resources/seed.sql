@@ -2,16 +2,6 @@
 INSERT INTO creature_types(type, description, img_url)
 VALUES
   (
-    'Nyan Cat',
-    'A mystical flying space feline in the shape of a pop tart.',
-    'https://i.pinimg.com/originals/93/e4/cd/93e4cd939da891cba51e740039b4f4d2.png'
-  ),
-  (
-    'Dragon',
-    'A powerful reptile in varied sizes with magical abilities.',
-    'https://i.imgur.com/0Z6wZmr.jpg'
-  ),
-  (
     'Unicorn',
     'A equine animal, typically with white fur, easily identifed by a large horn on their heads.',
     'https://i.imgur.com/aQ7YyVW.jpg'
@@ -42,24 +32,6 @@ INSERT INTO adoptable_creatures(
   )
 VALUES
   (
-    'Nyan Nyan',
-    'https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG',
-    6,
-    'no',
-    'Was found at the end of a rainbow and is looking for a new sky home',
-    'available',
-    (SELECT id FROM creature_types WHERE type='Nyan Cat')
-  ),
-  (
-    'Bob Nyanley',
-    'https://s3.amazonaws.com/colorslive/jpg_512x512/377224-lglLt_mui26xjl6y.jpg',
-    21,
-    'no',
-    'A Nyan cat in the shape of a burger',
-    'available',
-    (SELECT id FROM creature_types WHERE type='Nyan Cat')
-  ),
-  (
     'Taco Cat',
     'https://i.pinimg.com/originals/af/60/ea/af60ea38d3ff1f9c940ed7540e6b4e9e.jpg',
     17,
@@ -83,14 +55,6 @@ VALUES
     'Happy Saint Paddys Day',
     'available',
     (SELECT id FROM creature_types WHERE type='Nyan Cat')
-  ),(
-    'Galakrond',
-    'https://gamepedia.cursecdn.com/wowpedia/thumb/e/e5/Galakrond%2C_the_Wretched.jpg/1032px-Galakrond%2C_the_Wretched.jpg',
-    7950,
-    'yes',
-    'A massive proto-dragon who is known as the progenitor of dragonkind.',
-    'available',
-    (SELECT id FROM creature_types WHERE type='Dragon')
   ),
   (
     'Spyro',
@@ -292,14 +256,6 @@ INSERT INTO adoption_applications(
     creature_id
   )
 VALUES
-  (
-    'Bob',
-    '617-666-8888',
-    'bobs@burgers.com',
-    'own',
-    'pending',
-    2
-  ),
   (
     'A BAD OWNER',
     '617-666-6666',

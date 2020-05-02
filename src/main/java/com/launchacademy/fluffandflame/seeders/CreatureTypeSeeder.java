@@ -18,17 +18,19 @@ public class CreatureTypeSeeder {
 
   public void seed() {
     CreatureType newCreature = new CreatureType();
-    newCreature.setType("Testasaurus");
-    newCreature.setDescription("This is just a test.");
-    newCreature.setImgUrl("https://i.imgur.com/Vvh2s1y.png");
+    newCreature.setType("Nyan Cat");
+    newCreature.setDescription("A mystical flying space feline in the shape of a pop tart.");
+    newCreature.setImgUrl("https://i.pinimg.com/originals/93/e4/cd/93e4cd939da891cba51e740039b4f4d2.png");
+
+    CreatureType newCreature2 = new CreatureType();
+    newCreature2.setType("Dragon");
+    newCreature2.setDescription("A powerful reptile in varied sizes with magical abilities.");
+    newCreature2.setImgUrl("https://i.imgur.com/0Z6wZmr.jpg");
 
     List<CreatureType> findType = repo.findAllByType(newCreature.getType());
     if (findType.size() == 0) {
-      System.out.println("NOT FOUND ADDING " + newCreature.getType());
       repo.save(newCreature);
+      repo.save(newCreature2);
     }
   }
 }
-
-// curl -X POST localhost:8080/api/v1/creature/types -H 'Content-type:application/json' -d
-// '{"type": "Testing2", "description": "Another Test", "imgUrl":"https://via.placeholder.com/150"}'

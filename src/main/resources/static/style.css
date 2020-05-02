@@ -54,7 +54,7 @@ ul.menu-new li:hover {
 }
 
 .fade-out {
-  animation: fadeOut ease 4s;
+  animation: fadeOut ease 6s;
 }
 @keyframes fadeOut {
   0% {

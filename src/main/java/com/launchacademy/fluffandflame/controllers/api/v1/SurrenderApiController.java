@@ -67,6 +67,3 @@ public class SurrenderApiController {
   }
 
 }
-
-//curl -X POST localhost:8080/api/v1/surrender/new -H 'Content-type:application/json' -d '{"name": "Some Guy Giving up His Pet222","phoneNumber": "666-666-6666","email": "email@email.com","petName": "Poor Abandoned Pet","petAge": 666,"petImageUrl": "https://i.imgur.com/Vvh2s1y.png","vaccinationStatus": true,"applicationStatus": "pending","creatureType": { "id": 1, "type": "Testasaurus", "description": "This is just a test.", "imgUrl": "https://i.imgur.com/Vvh2s1y.png" }}'
-
