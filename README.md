@@ -50,3 +50,4 @@ psql adopt_a_pet
 
 Visit http://localhost:8080/creatures to view the site.
 
+To run the webpack dev server for refresh of changes to the frontend, cd into `java-fluff-and-flame/src/main/frontend` and run `npm run dev:client`
