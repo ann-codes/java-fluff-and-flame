@@ -1,17 +1,14 @@
-Individual Project converting the original React & Node/Express [Fluff and Flame](https://github.com/ann-codes/fluff-and-flame) group project to a Java Spring backend.
-
-This project meets all core and non-core user stories. 
+This is an individual bootcamp project converting my original React & Node/Express [Fluff and Flame](https://github.com/ann-codes/fluff-and-flame) group project to a Java Spring backend.
 
 It includes a non-authenticated, direct link "user portal" and "admin portal" to edit submitted applications and make adoption decisions as an admin, respectively. 
 
-Tech stack: 
-- yarn
+## Tech stack: 
 - React.js
-- Foundation/CSS
+- Zurb Foundation/CSS
 - Java SDK 11.0.6, Spring, SpringBoot
 - Postgres (must be installed)
 
-## Java 11:
+## Configuration:
 
 If using IntelliJ, ensure it is running the correct version JDK 11: 
 
@@ -20,7 +17,7 @@ If using IntelliJ, ensure it is running the correct version JDK 11:
 - File -> Project Structure -> Project Settings -> Modules, change the language level
 - File -> Settings -> Build, Execution, Deployment -> Compiler -> Java Compiler -> Change to version
 
-Commands: 
+## Commands: 
 
 ```
 ## create the database
@@ -28,7 +25,7 @@ createdb adopt_a_pet
 
 ## running spring w/ maven wrapper
 
-##on mac:
+## on mac:
 ./mvnw spring-boot:run
 
 ## on windows (on gitbash, don't run in intelliJ terminal):
@@ -48,6 +45,9 @@ psql adopt_a_pet
 \i src/main/resources/seed.sql
 ```
 
-Visit http://localhost:8080/creatures to view the site.
+Once the server starts, visit http://localhost:8080/creatures to view the site.
 
-To run the webpack dev server for refresh of changes to the frontend, cd into `java-fluff-and-flame/src/main/frontend` and run `npm run dev:client`
+To run the webpack dev server for refresh of changes to the frontend, cd into `java-fluff-and-flame/src/main/frontend` and run 
+```
+npm run dev:client
+```
