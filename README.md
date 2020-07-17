@@ -19,8 +19,9 @@ If using IntelliJ, ensure it is running the correct version JDK 11:
 
 If using SDKman for sdk management, in the command line: 
 
-`sdk list java` 
-`sdk use java {version}`
+- Get the most recent Java version: `sdk list java`  
+- Install, set default as neccessary.
+- Change the Java version to 11: `sdk use java {version}`
 
 Ensure it is the correct Java version before running Spring Boot. 
 
