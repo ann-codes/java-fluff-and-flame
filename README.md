@@ -17,6 +17,13 @@ If using IntelliJ, ensure it is running the correct version JDK 11:
 - File -> Project Structure -> Project Settings -> Modules, change the language level
 - File -> Settings -> Build, Execution, Deployment -> Compiler -> Java Compiler -> Change to version
 
+If using SDKman for sdk management, in the command line: 
+
+`sdk list java` 
+`sdk use java {version}`
+
+Ensure it is the correct Java version before running Spring Boot. 
+
 ## Commands: 
 
 ```
